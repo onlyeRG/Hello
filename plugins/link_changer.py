@@ -119,7 +119,6 @@ class LinkChanger:
         return await db.get_user_channels(user_id)
 
 link_changer = LinkChanger()
-                except Exception as e:
                     if "USERNAME_OCCUPIED" in str(e) or "occupied" in str(e).lower():
                         # Username taken, try another
                         new_suffix = self.generate_random_suffix()
