@@ -58,6 +58,30 @@ class Bot(Client):
         print('Bot Stopped Bye')
 
 Bot().run()
+                user_id = channel['user_id']
+                channel_id = channel['channel_id']
+                base_username = channel['base_username']
+                interval = channel['interval']
+                
+                success, result = await link_changer.start_channel_rotation(
+                    user_id, 
+                    channel_id, 
+                    base_username, 
+                    interval
+                )
+                if success:
+                    print(f"[v0] Resumed channel rotation for {channel_id}")
+                else:
+                    print(f"[v0] Failed to resume channel {channel_id}: {result}")
+        except Exception as e:
+            print(f"[v0] Error resuming channels: {e}")
+
+    async def stop(self, *args):
+
+        await super().stop()
+        print('Bot Stopped Bye')
+
+Bot().run()
             channels = await db.get_all_active_channels()
             for channel in channels:
                 user_id = channel['user_id']
